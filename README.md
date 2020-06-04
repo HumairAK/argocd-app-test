@@ -1,4 +1,4 @@
 # argocd-app-test
 
-Demo test for sops. 
+Demo test for sops and ksops+argocd 
 
