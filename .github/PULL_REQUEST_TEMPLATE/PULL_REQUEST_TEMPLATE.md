@@ -1,1 +1,8 @@
-# 1 PR template
+---
+name: PR General
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
