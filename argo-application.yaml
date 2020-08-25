@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-secret-app-test
+spec:
+  destination:
+    namespace: argocd-test
+    server: 'https://api.aasthana.dev.datahub.redhat.com:6443'
+  project: default
+  source:
+    path: .
+    repoURL: 'https://gitlab.cee.redhat.com/hukhan/argocd-app-test.git'
+    targetRevision: helm
+    plugin:
+      name: helmSecrets
+      env:
+        - name: VALUES_FILES
+          value: "-f values.yaml -f helm_vars/dev/secrets.enc.yaml -f helm_vars/dev/values.yaml"
+  syncPolicy:
+    syncOptions:
+      - Validate=false
