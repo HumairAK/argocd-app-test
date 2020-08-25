@@ -15,7 +15,7 @@ spec:
       name: helmSecrets
       env:
         - name: VALUES_FILES
-          value: "-f values.yaml -f helm_vars/dev/secrets.enc.yaml -f helm_vars/dev/values.yaml"
+          value: "-f values.yaml -f helm_vars/dev/secrets.password.enc.yaml -f helm_vars/dev/secrets.username.enc.yaml"
   syncPolicy:
     syncOptions:
       - Validate=false
