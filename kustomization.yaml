@@ -1,3 +1,0 @@
-namespace: secret-test
-generators:
-  - ./secret-generator.yaml
