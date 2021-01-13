@@ -3,3 +3,10 @@ kind: Kustomization
 resources:
   - deployment.yaml
   - service.yaml
+configMapGenerator:
+- name: argocd-cm
+  files:
+  - configs/argo_cm/dex.config
+  - configs/argo_cm/configManagementPlugins
+  envs:
+  - configs/argo_cm/envs
