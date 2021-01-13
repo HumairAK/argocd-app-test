@@ -1,0 +1,31 @@
+apiVersion: v1
+data:
+  admin.enabled: "true"
+  configManagementPlugins: |-
+    - name: helmSecrets
+      generate:
+        command: ["/bin/sh", "-c"]
+        args: ["helm secrets template $VALUES_FILES . | sed '/^removed/d'"]
+  dex.config: |-
+    connectors:
+      # OpenShift
+      - type: openshift
+        id: openshift
+        name: OpenShift
+        config:
+          issuer: https://kubernetes.default.svc
+          clientID: system:serviceaccount:argocd:argocd-dex-server
+          clientSecret: $DEX_OAUTH_CLIENT_SECRET
+          insecureCA: true
+          groups:
+            - argocd-admins
+            - thoth
+            - operate-first
+            - data-science
+            - rekor
+  kustomize.buildOptions: --enable_alpha_plugins
+  url: https://argocd-server-argocd.apps.ocp4-aio.cnv2.massopen.cloud
+  users.anonymous.enabled: "true"
+kind: ConfigMap
+metadata:
+  name: argocd-cm-6kmbm64tm2
